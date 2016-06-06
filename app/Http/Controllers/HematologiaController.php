@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Paciente;
+
+use App\Hematologia;
+
 class HematologiaController extends Controller
 {
     /**
@@ -23,9 +27,11 @@ class HematologiaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+
+    public function create($id)
     {
-        //
+        $paciente=Paciente::findOrFail($id);
+        return view('analisis.hematologia.create')->withPaciente($paciente);
     }
 
     /**
@@ -36,7 +42,22 @@ class HematologiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /* $this->validate($request,[
+            'dni'=>'required|unique:pacientes',
+            'first_name'=>'required',
+            'last_name'=>'required',
+            'age'=>'required',
+            'gender'=>'required',
+        ]);*/
+
+        $paciente=Paciente::findOrFail($request->user_id);
+        $input = $request->all();
+        $data = new Hematologia();
+        $data ->fill($input);
+        $data ->dni=$paciente->dni;
+        $data ->user_id=$paciente->id;
+        $data ->save();
+        return Redirect('hematologia/'.$data->id);
     }
 
     /**
@@ -47,7 +68,9 @@ class HematologiaController extends Controller
      */
     public function show($id)
     {
-        //
+            $hematologia = Hematologia::findOrFail($id);
+            $paciente = Paciente::findOrFail($hematologia->user_id);
+        return view('analisis.hematologia.show',['paciente' => $paciente])->withHematologia($hematologia);
     }
 
     /**

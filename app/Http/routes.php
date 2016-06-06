@@ -21,8 +21,10 @@ Route::get('/home', 'PacienteController@index');
 //--------------Middleware stuff-----------------------------
 Route::group(['middleware' => ['web']], function () {
     
+  Route::get('/hematologia/create/{id}', 'HematologiaController@create');
   Route::resource('hematologia', 'HematologiaController');
   Route::resource('paciente', 'PacienteController');
   Route::resource('general', 'GeneralController');
   Route::resource('eform', 'EformController');
+
 });
