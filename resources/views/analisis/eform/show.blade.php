@@ -34,9 +34,9 @@
 					<div class="box-header"><h3 class="box-title">Historial de Examenes generales</h3> 
 					<div class="box-tool pull-right">
 
-							<a href="{{url('hematologia/create/'.$paciente->id)}}" class="btn btn-primary btn-xs btn-box-tool" ><i class="fa fa-plus"></i> Hematologia</a> 
-							<a href="{{route('general.create', $paciente->id)}}" class="btn btn-primary btn-xs btn-box-tool" ><i class="fa fa-plus"></i> Examen de orina</a> 
-							<a href="{{route('eform.create', $paciente->id)}}" class="btn btn-primary btn-xs btn-box-tool" ><i class="fa fa-plus"></i> Datos extra</a> 
+							<a href="{{route('hematologia.create')}}" class="btn btn-primary btn-xs btn-box-tool" ><i class="fa fa-plus"></i> Hematologia</a> 
+							<a href="{{route('general.create')}}" class="btn btn-primary btn-xs btn-box-tool" ><i class="fa fa-plus"></i> Examen de orina</a> 
+							<a href="{{route('eform.create')}}" class="btn btn-primary btn-xs btn-box-tool" ><i class="fa fa-plus"></i> Datos extra</a> 
 							</div>
 					</div>
 					<div class="box-body"> 

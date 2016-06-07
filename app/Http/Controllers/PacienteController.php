@@ -71,7 +71,8 @@ class PacienteController extends Controller
     public function show($id)
     {
             $item = Paciente::findOrFail($id);
-            $hematologia = Paciente::find($id)->hematologia;
+            $hematologia = Hematologia::where('user_id',$id)
+            ->get();
             if(empty($hematologia)){
                 $hematologia = [];
             }
@@ -101,7 +102,7 @@ class PacienteController extends Controller
     {
         //
         $validator= Validator::make($request->all(),[
-            'dni'=>'required|unique:pacientes',
+            'dni'=>'required',
             'first_name'=>'required',
             'last_name'=>'required',
             'age'=>'required',
